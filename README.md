@@ -1,6 +1,6 @@
 # Fugue Foundation, a nonprofit
 <p align="center">
-  <img src="https://github.com/fuguefoundation/nonprofit/src/assets/images/logo_150.png">
+  <img src="https://github.com/fuguefoundation/nonprofit/blob/master/src/assets/images/logo_150.png">
 </p>
 
 ## Nonprofit goal
@@ -71,11 +71,11 @@ Contributions are always welcome & encouraged! :smile: If you'd like to contribu
 * Overall user experience and design improvements
 
 ## References
-[Metamask](https://metamask.io/)
-[Ethereum](https://ethereum.org/)
-[Truffle](http://truffleframework.com/docs/)
-[Etherscan API](https://etherscan.io/apis)
-[Nikhil Bhaskar](https://github.com/Nikhil22) and his excellent [starter dapp](https://github.com/Nikhil22/angular2-truffle-starter-dapp)
+* [Metamask](https://metamask.io/)
+* [Ethereum](https://ethereum.org/)
+* [Truffle](http://truffleframework.com/docs/)
+* [Etherscan API](https://etherscan.io/apis)
+* [Nikhil Bhaskar](https://github.com/Nikhil22) and his excellent [starter dapp](https://github.com/Nikhil22/angular2-truffle-starter-dapp)
 
 ## Technologies & Languages Used
 1. Angular5 + Material (Typescript/Javascript)
