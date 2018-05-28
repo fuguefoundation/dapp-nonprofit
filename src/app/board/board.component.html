@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+		<mat-card>
+		  <mat-card-header>
+		    <mat-card-title>Board of Directors</mat-card-title>
+		    <mat-card-subtitle>{{boardInfo[2]}}</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-card-content>
+			<mat-list>
+			  <mat-divider></mat-divider>
+			  <mat-list>
+			  	<mat-list-item>Owner: {{boardInfo[3]}}</mat-list-item>
+			  	<mat-list-item>Minimum Quorum: {{boardInfo[4]}}</mat-list-item>
+			  	<mat-list-item>Minutes of Debate Period: {{boardInfo[5]}}</mat-list-item>
+			  	<mat-list-item>Majority Margin: {{boardInfo[6]}}</mat-list-item>
+			  	<mat-list-item>Number of Proposals: {{boardInfo[7]}}</mat-list-item>
+			  </mat-list>
+			</mat-list>
+		  </mat-card-content>
+		  <mat-card-actions>
+		    <button mat-button (click)="blockExplorerAdr(boardInfo[2])">Explore</button>
+		  </mat-card-actions>
+		</mat-card>
+    </div>
+
+    <div class="col-6">
+		<mat-form-field>
+			<mat-select placeholder="Select function" [(ngModel)]="functionSelected"
+			(change)="onFunctionSelected(functionSelected)">
+			  <mat-option *ngFor="let function of boardInfo[1]; index as i;" value={{i}}>{{function.name}}</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<div *ngIf="functionIndex" id="functionDiv">
+			{{docs[1].notice}}
+			<span *ngIf="docs[1].onlyOwner" style="color:red;">Only for contract owner</span>
+			<span *ngIf="docs[1].onlyMembers" style="color:red;">Only for board members</span>
+			<div *ngFor="let input of boardInfo[1][functionIndex].inputs; index as i;">
+				<mat-input-container class="contractField">
+					<input matInput [(ngModel)]="functionParams[i]" placeholder={{input.name}}>
+				</mat-input-container>
+				<p *ngIf="input.name" class="devdoc">
+					type: {{input.type}} | {{docs[0].params[input.name]}}
+				</p>
+			</div>
+			<mat-card-actions>
+		        <button mat-button (click)="executeContract(functionSelected)"
+		        color="primary">Execute</button>
+			</mat-card-actions>
+		</div>
+    </div>
+  </div>
+</div>
+<h2>{{status}}</h2>
+<app-tx></app-tx>

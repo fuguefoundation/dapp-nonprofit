@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+		<mat-card class="example-card">
+		  <mat-card-header>
+		    <div mat-card-avatar class="example-header-image"></div>
+		    <mat-card-title>{{b.title}}</mat-card-title>
+		    <mat-card-subtitle>Beneficiary ID: <strong>{{b.id}}</strong></mat-card-subtitle>
+		  </mat-card-header>
+		  <img mat-card-image src="{{b.image}}" alt="{{b.alt}}">
+		  <mat-card-content>
+            <mat-card-subtitle>{{b.subtitle}}</mat-card-subtitle>
+            <mat-divider></mat-divider>
+		    <p>{{b.description}}</p>
+		  </mat-card-content>
+		  <!-- <mat-card-actions>
+		    <button mat-button color="primary">{{b.address}}</button>
+		  </mat-card-actions> -->
+		</mat-card><!-- card -->
+    </div>
+    <div class="col-6">
+    	<p>Use id number <strong>{{b.id}}</strong> in the <em>Fugue Foundation</em> contract to donate test ether on behalf of {{b.title}}.</p>
+    	<p>Address: {{b.address}}</p>
+    </div>
+  </div>
+</div>
+

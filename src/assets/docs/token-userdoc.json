@@ -1,0 +1,54 @@
+{
+    "methods": {
+        "approve": {
+            "notice": "Set allowance for other address, Allows `_spender` to spend no more than `_value` tokens on your behalf"
+        },
+        "approveAndCall": {
+            "notice": "Set allowance for other address and notify, Allows `_spender` to spend no more than `_value` tokens in your behalf, and then ping the contract about it"
+        },
+        "burn": {
+            "notice": "Remove `_value` tokens from the system irreversibly"
+        },
+        "burnFrom": {
+            "notice": "Destroy tokens from other account     * Remove `_value` tokens from the system irreversibly on behalf of `_from`."
+        },
+        "buy": {
+            "notice": "DISABLED. Buy tokens from contract by sending ether"
+        },
+        "freezeAccount": {
+            "notice": "Prevent | Allow `target` from sending & receiving tokens",
+            "onlyOwner" : true
+        },
+        "mintToken": {
+            "notice": "Create `mintedAmount` tokens and send it to `target`",
+            "onlyOwner" : true
+        },
+        "sell": {
+            "notice": "Sell `amount` tokens to contract"
+        },
+        "setPrices": {
+            "notice": "Allow users to buy tokens for `newBuyPrice` eth and sell tokens for `newSellPrice` eth",
+            "onlyOwner" : true
+        },
+        "balanceOf": {
+            "notice": "Check balance at a given address"
+        },
+        "frozenAccount": {
+            "notice": "Check whether a given address is frozen"
+        },
+        "transfer": {
+            "notice": "Send `_value` tokens to `_to` from your account"
+        },
+        "transferFrom": {
+            "notice": "Send `_value` tokens to `_to` on behalf of `_from`"
+        },
+        "transferOwnership": {
+            "notice": "Transfer contract ownership to another address",
+            "onlyOwner" : true
+        },
+        "endContract": {
+            "notice": "Standard self-destruct method",
+            "onlyOwner": true
+        }
+    }
+}

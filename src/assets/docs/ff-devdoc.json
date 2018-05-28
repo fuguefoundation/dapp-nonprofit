@@ -1,0 +1,49 @@
+{
+	"methods": {
+		"addBeneficiary": {
+			"params": {
+				"beneficiaryAdr": "ethereum address to be added",
+				"beneficiaryName": "public name for that beneficiary"
+			}
+		},
+		"blockDonor": {
+			"params": {
+				"id": "donor ID to be blocked"
+			}
+		},
+		"donate": {
+			"params": {
+				"comment": "optional comment for donor to include",
+				"id": "beneficiary ID number",
+				"weiAmount": "amount to donate in wei"
+			}
+		},
+		"removeBeneficiary": {
+			"params": {
+				"beneficiaryAdr": "beneficiary address to be removed"
+			}
+		},
+		"stopStartDonations": {
+			"params": {
+				"condition": "true or false"
+			}
+		},
+		"transferOwnership": {
+			"params": {
+				"newOwner": "transfer contract to new owner"
+			}
+		},
+		"donors": {
+			"params": null
+		},
+		"donations": {
+			"params": null
+		},
+		"beneficiaries": {
+			"params": null
+		},
+		"endContract": {
+			"params": null
+		}
+	}
+}

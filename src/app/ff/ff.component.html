@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+		<mat-card>
+		  <mat-card-header>
+		    <mat-card-title>Fugue Foundation</mat-card-title>
+		    <mat-card-subtitle>{{ffInfo[2]}}</mat-card-subtitle>
+		  </mat-card-header>
+		  <mat-card-content>
+			<mat-list>
+			  <mat-divider></mat-divider>
+			  <mat-list>
+			  	<mat-list-item>Owner: {{ffInfo[3]}}</mat-list-item>
+			  	<mat-list-item>Number of Donations: {{ffInfo[4]}}</mat-list-item>
+			  	<mat-list-item>Total Amount Donated: {{ffInfo[5]}}</mat-list-item>
+			  </mat-list>
+			</mat-list>
+		  </mat-card-content>
+		  <mat-card-actions>
+		    <button mat-button (click)="blockExplorerAdr(ffInfo[2])">Explore</button>
+		  </mat-card-actions>
+		</mat-card>
+    </div>
+    <div class="col-6">
+		<mat-form-field>
+			<mat-select placeholder="Select function" [(ngModel)]="functionSelected"
+			(change)="onFunctionSelected(functionSelected)" name="functionSelected">
+			  <mat-option *ngFor="let function of ffInfo[1]; index as i;" value={{i}}>{{function.name}}</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<div *ngIf="functionIndex" id="functionDiv">
+			{{docs[1].notice}}
+			<span *ngIf="docs[1].onlyOwner" style="color:red;">Only for contract owner</span>
+			<div *ngFor="let input of ffInfo[1][functionIndex].inputs; index as i;">
+				<mat-input-container class="contractField">
+					<input matInput [(ngModel)]="functionParams[i]" required
+					placeholder="{{input.name}}" name="{{input.name}}">
+				</mat-input-container>
+				<p *ngIf="input.name" class="devdoc">
+					type: {{input.type}} | {{docs[0].params[input.name]}}
+				</p>
+			</div>
+			<mat-card-actions>
+		        <button mat-button
+		        (click)="executeContract(functionSelected)"
+		        color="primary">Execute</button>
+			</mat-card-actions>
+		</div>
+    </div>
+  </div>
+</div>
+
+<h2>{{status}}</h2>
+<app-tx></app-tx>

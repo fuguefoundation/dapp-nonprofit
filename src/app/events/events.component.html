@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+		<mat-form-field>
+			<mat-select placeholder="Select contract" [(ngModel)]="contractSelected"
+			(change)="onContractSelected(contractSelected)">
+			  <mat-option value="FF">Fugue Foundation</mat-option>
+			  <mat-option value="Board">Board of Directors</mat-option>
+			  <mat-option value="Token">Fugue Token</mat-option>
+			</mat-select>
+		</mat-form-field>
+    </div>
+
+    <div class="col-6">
+      Events are feedback from a contract when some type of state change occurs, like when a donation is given, a vote cast, or beneficiary added. Select a contract, then query for a given event. Refresh the page to submit a new query. More events and features will be available soon.
+    </div>
+  </div>
+  <div class="row" *ngIf="contract">
+    <div class="col-6">
+		<mat-form-field>
+			<mat-select placeholder="Select event" [(ngModel)]="eventSelected" required>
+			  <mat-option *ngFor="let e of eventsArray; index as i;" value={{i}}>{{e.name}}</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-card-actions>
+	        <button mat-button (click)="onEventSelected(eventSelected)"
+	        color="primary">Select</button>
+		</mat-card-actions>
+    </div>
+    <div class="col-6">
+      <app-messages></app-messages>
+    </div>
+  </div>
+  <div class="row" *ngIf="eventData.length > 0">
+    <div class="col-12">
+		<pre>{{ eventData | json }}</pre>
+    </div>
+  </div>
+</div>

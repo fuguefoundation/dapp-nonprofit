@@ -1,0 +1,40 @@
+{
+	"methods": {
+		"addBeneficiary": {
+			"notice": "Add donation beneficiary - Make `beneficiaryAdr` someone to receive donations",
+			"onlyOwner": true
+		},
+		"blockDonor": {
+			"notice": "Block specific address from donating",
+			"onlyOwner": true
+		},
+		"donate": {
+			"notice": "Donate ether to an address corresponding to a beneficiary ID"
+		},
+		"removeBeneficiary": {
+			"notice": "Remove address from list of possible beneficiaries",
+			"onlyOwner": true
+		},
+		"stopStartDonations": {
+			"notice": "Stop or start donation capabilities",
+			"onlyOwner": true
+		},
+		"donors": {
+			"notice": "Retrive donor at a specific donor ID"
+		},
+		"beneficiaries": {
+			"notice": "Retrive beneficiary at a specific beneficiary ID"
+		},
+		"donations": {
+			"notice": "Retrive donation at a specific donation ID"
+		},
+		"endContract": {
+			"notice": "Standard self-destruct method",
+			"onlyOwner": true
+		},
+		"transferOwnership": {
+			"notice": "Transfer contract ownership to `newOwner`",
+			"onlyOwner": true
+		}
+	}
+}

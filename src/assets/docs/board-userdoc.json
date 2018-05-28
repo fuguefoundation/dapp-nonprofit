@@ -1,0 +1,42 @@
+{
+	"methods": {
+		"addMember": {
+			"notice": "Make `targetMember` a member called `memberName`",
+			"onlyOwner": true
+		},
+		"changeVotingRules": {
+			"notice": "Make so that proposals need to be discussed for at least `minutesForDebate/60` hours, have at least `minimumQuorumForProposals` votes, and have 50% + `marginOfVotesForMajority` votes to be executed",
+			"onlyOwner": true
+		},
+		"executeProposal": {
+			"notice": "Finish vote - Count the votes proposal for `proposalNumber` and execute it if approved",
+			"onlyOwner": true
+		},
+		"newProposal": {
+			"notice": "Add Proposal - Propose for `beneficiary` to engage in `proposalDescription`",
+			"onlyMembers": true
+		},
+		"removeMember": {
+			"notice": "Remove membership from `targetMember`",
+			"onlyOwner": true
+		},
+		"vote": {
+			"notice": "Log a vote for a proposal - Enter true or false for `supportsProposal` in support of or against a specific `proposalNumber`",
+			"onlyMembers": true
+		},
+		"proposals": {
+			"notice": "Query a proposal by proposal number"
+		},
+		"members": {
+			"notice": "Query a member by member number"
+		},
+		"transferOwnership": {
+			"notice": "Transfer contract ownership to `newOwner`",
+			"onlyOwner": true
+		},
+		"endContract": {
+			"notice": "Standard self-destruct method",
+			"onlyOwner": true
+		}
+	}
+}

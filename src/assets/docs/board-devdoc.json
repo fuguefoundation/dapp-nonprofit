@@ -1,0 +1,54 @@
+{
+	"methods": {
+		"addMember": {
+			"params": {
+				"memberName": "public name for that member",
+				"targetMember": "ethereum address to be added"
+			}
+		},
+		"changeVotingRules": {
+			"params": {
+				"marginOfVotesForMajority": "the proposal needs to have 50% plus this number",
+				"minimumQuorumForProposals": "how many members must vote on a proposal for it to be executed",
+				"minutesForDebate": "the minimum amount of delay between when a proposal is made and when it can be executed"
+			}
+		},
+		"executeProposal": {
+			"params": {
+				"proposalNumber": "proposal number"
+			}
+		},
+		"newProposal": {
+			"params": {
+				"beneficiary": "who to send the ether to",
+				"proposalDescription": "Brief description of proposal"
+			}
+		},
+		"removeMember": {
+			"params": {
+				"targetMember": "ethereum address to be removed"
+			}
+		},
+		"vote": {
+			"params": {
+				"justificationText": "optional justification text",
+				"proposalNumber": "number of proposal",
+				"supportsProposal": "either in favor or against it"
+			}
+		},
+		"transferOwnership": {
+			"params": {
+				"newOwner": "transfer contract to new owner"
+			}
+		},
+		"proposals": {
+			"params": null
+		},
+		"members": {
+			"params": null
+		},
+		"endContract": {
+			"params": null
+		}
+	}
+}
