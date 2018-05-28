@@ -1,9 +1,9 @@
-# Fugue Foundation, a nonprofit
+# Charitable smart contracting platform
 <p align="center">
   <img src="https://github.com/fuguefoundation/nonprofit/blob/master/src/assets/images/logo_150.png">
 </p>
 
-## Nonprofit goal
+## Fugue Foundation nonprofit goals
 
 To alleviate poverty using decentralized, open-source blockchain technology. Read our [prospectus](https://fuguefoundation.github.io).
 
