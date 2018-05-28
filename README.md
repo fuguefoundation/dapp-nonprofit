@@ -61,7 +61,7 @@ The platform is in alpha with contracts deployed to the `Rinkeby` testnet. We in
 
 ## Contributing to the project
 
-Contributions are always welcome & encouraged! :smile: If you'd like to contribute, please see [Contributing Guidelines](CONTRIBUTING.md).
+This is an open source project. Contributions are welcomed & encouraged! :smile: If you'd like to improve the code base, please see [Contributing Guidelines](CONTRIBUTING.md).
 
 ## TODO
 * Form validation
