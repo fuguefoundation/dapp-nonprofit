@@ -8,12 +8,14 @@ import { EVENTSDATA } from '../app/events/events-data';
 import { Event } from '../app/events/event';
 import { MessageService } from './message.service'
 import { Web3Service } from './web3.service'
+import { etherscan } from '../../constants/constants';
 
 @Injectable()
 export class EventsService {
 
-	private apiKey = "YOUR_API_KEY_HERE"
+	private apiKey = etherscan.key; //replace
 	private apiUrl: Array<string> = ["https://api-rinkeby.etherscan.io/api?module=logs&action=getLogs&fromBlock=", "&toBlock=latest&address=", "&topic0=", "&apikey="];
+	private txUrl: string = "https://rinkeby.etherscan.io/tx/";
 	private web3;
 
 	constructor(private http: HttpClient, private messageService: MessageService,
@@ -23,8 +25,7 @@ export class EventsService {
 
 	getEventData (data): Observable<any> {
 		let url = this.apiUrl[0] + data[0] + this.apiUrl[1] + data[1] + this.apiUrl[2] + data[2] + this.apiUrl[3] + this.apiKey;
-		console.log(url);
-	  return this.http.get<any>(url).pipe(
+	    return this.http.get<any>(url).pipe(
 	  	  tap(events => this.log(`fetched events`)),
 	      catchError(this.handleError('getEventData', []))
 	    );
@@ -34,12 +35,26 @@ export class EventsService {
 	  return of(EVENTSDATA);
 	}
 
-	processEventData(data): Array<Object>{
+	processBeneficiaryAdded(data): Array<Object>{
+		console.log(data);
 	  var logArray = [];
-	  var url = "https://etherscan.io/tx/"
 	  for (var i = 0; i < data.result.length; i++) {
 	    var obj = {};
-	    obj["hash"] = url + data.result[i].transactionHash
+	    obj["hash"] = this.txUrl + data.result[i].transactionHash
+	    obj["name"] = this.web3.toAscii(data.result[i].data.substring(194, 258));
+	    obj["address"] = '0x' + data.result[i].data.substring(26, 66);
+	    obj["timestamp"] = this.timeConverter(this.web3.toDecimal(data.result[i].timeStamp));
+	    logArray.push(obj);
+	  }
+	  console.log(logArray);
+	  return logArray;
+	}
+
+	processEventData(data): Array<Object>{
+	  var logArray = [];
+	  for (var i = 0; i < data.result.length; i++) {
+	    var obj = {};
+	    obj["hash"] = this.txUrl + data.result[i].transactionHash
 	    obj["info1"] = this.web3.toAscii(data.result[i].data.substring(194, 258));
 	    obj["info2"] = this.web3.toDecimal(data.result[i].data.substring(0, 66));
 	    obj["info3"] = this.web3.fromWei(this.web3.toDecimal(data.result[i].data.substring(0, 66)));
