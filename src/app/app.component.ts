@@ -1,7 +1,13 @@
-import { Component } from '@angular/core';
-import { NavComponent } from './nav/nav.component';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { AnalyticsService } from '../services/analytics.service';
 import { analytics } from '../../constants/constants';
+import { NavComponent } from './nav/nav.component';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +17,10 @@ import { analytics } from '../../constants/constants';
   providers: [AnalyticsService]
 })
 
-export class AppComponent  {
+export class AppComponent implements OnInit {
 
-	constructor(private analyticsService: AnalyticsService) {
+	constructor(private analyticsService: AnalyticsService, private router: Router,
+		private titleService: Title, private activatedRoute: ActivatedRoute) {
 		this.appendTrackingCode();
 	}
 
@@ -33,6 +40,19 @@ export class AppComponent  {
 		 console.error('Error appending analytics');
 		 console.error(ex);
 		}
+	}
+
+	ngOnInit() {
+	    this.router.events
+	      .filter((event) => event instanceof NavigationEnd)
+	      .map(() => this.activatedRoute)
+	      .map((route) => {
+	        while (route.firstChild) route = route.firstChild;
+	        return route;
+	      })
+	      .filter((route) => route.outlet === 'primary')
+	      .mergeMap((route) => route.data)
+	      .subscribe((event) => this.titleService.setTitle(event['title']));
 	}
 
 	//this.analyticsService.emitEvent("testCategory", "testAction", "testLabel", 10);
