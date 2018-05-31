@@ -21,12 +21,10 @@ export class Web3Service {
   checkAndInstantiateWeb3 = () => {
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
     if (typeof window.web3 !== 'undefined') {
-      console.warn('Using web3 detected from external source.');
       this.web3 = new Web3(window.web3.currentProvider);
       this.messageService.add('Web3 detected from external source');
     } else {
-      console.warn('No web3 detected. Falling back to ${environment.HttpProvider}.');
-      this.messageService.add(`No web3 detected. Falling back to ${environment.HttpProvider}`)
+      this.messageService.add('No web3 detected. Falling back to localhost')
       // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
       this.web3 = new Web3(new Web3.providers.HttpProvider(environment.HttpProvider));
     }
