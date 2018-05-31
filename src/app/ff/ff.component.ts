@@ -15,6 +15,7 @@ export class FFComponent {
 	accounts: any;
 	canBeNumber = canBeNumber;
 	status: string;
+	functionSelected: string;
 	ffInfo = new Array();
 	functionParams = new Array();
 	functionIndex: any;

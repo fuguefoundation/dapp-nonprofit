@@ -13,6 +13,7 @@ export class EventsComponent implements OnInit, OnDestroy {
 	events: Event[];
   eventsArray = new Array();
 	eventData = new Array();
+  contractSelected: any;
 	web3: any;
   contract: string;
 
@@ -23,7 +24,6 @@ export class EventsComponent implements OnInit, OnDestroy {
   ngOnInit(){
   	this.eventsService.getEvents().subscribe(events => {
   		this.events = events;
-  		console.log(this.events);
   	});
   }
 
@@ -45,11 +45,30 @@ export class EventsComponent implements OnInit, OnDestroy {
     let data : Array<string> = [this.eventsArray[e].fromBlock, this.eventsArray[e].address, this.eventsArray[e].topic];
   	if(this.eventData.length == 0){
 	  	this.eventsService.getEventData(data).subscribe(events => {
-	  		this.eventData = this.eventsService.processEventData(events);
-	  		console.log(events);
+        switch (this.eventsArray[e].name) {
+          case "Beneficiary Added":
+            this.eventData = this.eventsService.processBeneficiaryAdded(events);
+            break;
+          case "Donor Added":
+            this.eventData = this.eventsService.processDonorAdded(events);
+            break;
+          case "Donation Added":
+            this.eventData = this.eventsService.processDonationAdded(events);
+            break;
+          case "Voting Rules Changed":
+            this.eventData = this.eventsService.processVotingRulesChanged(events);
+            break;
+          default:
+            console.log('error processing event data');
+            break;
+        }
 	  		console.log(this.eventData);
 	  	});
   	}
+  }
+
+  clearEvents(){
+    this.eventData = [];
   }
 
   ngOnDestroy(){

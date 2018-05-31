@@ -16,6 +16,7 @@ export class TokenComponent {
 	accounts: any;
 	canBeNumber = canBeNumber;
 	status: string;
+	functionSelected: string;
 	tokenInfo = new Array();
 	functionParams = new Array();
 	functionIndex: any;

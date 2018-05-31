@@ -40,7 +40,7 @@ export class EventsService {
 	  var logArray = [];
 	  for (var i = 0; i < data.result.length; i++) {
 	    var obj = {};
-	    obj["hash"] = this.txUrl + data.result[i].transactionHash
+	    obj["tx"] = this.txUrl + data.result[i].transactionHash
 	    obj["name"] = this.web3.toAscii(data.result[i].data.substring(194, 258));
 	    obj["address"] = '0x' + data.result[i].data.substring(26, 66);
 	    obj["timestamp"] = this.timeConverter(this.web3.toDecimal(data.result[i].timeStamp));
@@ -50,14 +50,49 @@ export class EventsService {
 	  return logArray;
 	}
 
-	processEventData(data): Array<Object>{
+	processDonorAdded(data): Array<Object>{
+		console.log(data);
 	  var logArray = [];
 	  for (var i = 0; i < data.result.length; i++) {
 	    var obj = {};
-	    obj["hash"] = this.txUrl + data.result[i].transactionHash
-	    obj["info1"] = this.web3.toAscii(data.result[i].data.substring(194, 258));
-	    obj["info2"] = this.web3.toDecimal(data.result[i].data.substring(0, 66));
-	    obj["info3"] = this.web3.fromWei(this.web3.toDecimal(data.result[i].data.substring(0, 66)));
+	    obj["tx"] = this.txUrl + data.result[i].transactionHash
+	    obj["amountWei"] = this.web3.toDecimal('0x' + data.result[i].data.substring(130, 194));
+	    obj["amountEther"] = this.web3.fromWei(this.web3.toDecimal('0x' + data.result[i].data.substring(130, 194)));
+	    obj["address"] = '0x' + data.result[i].data.substring(26, 66);
+	    obj["timestamp"] = this.timeConverter(this.web3.toDecimal(data.result[i].timeStamp));
+	    logArray.push(obj);
+	  }
+	  console.log(logArray);
+	  return logArray;
+	}
+
+	processDonationAdded(data): Array<Object>{
+		console.log(data);
+	  var logArray = [];
+	  for (var i = 0; i < data.result.length; i++) {
+	    var obj = {};
+	    obj["tx"] = this.txUrl + data.result[i].transactionHash
+	    obj["donorAddr"] = '0x' + data.result[i].data.substring(90, 130);
+	    obj["beneficiaryAddr"] = '0x' + data.result[i].data.substring(154, 194);
+	    obj["amountWei"] = this.web3.toDecimal('0x' + data.result[i].data.substring(194, 258));
+	    obj["amountEther"] = this.web3.fromWei(this.web3.toDecimal('0x' + data.result[i].data.substring(194, 258)));
+	    obj["message"] = this.web3.toAscii(data.result[i].data.substring(450, 514));
+	    obj["timestamp"] = this.timeConverter(this.web3.toDecimal(data.result[i].timeStamp));
+	    logArray.push(obj);
+	  }
+	  console.log(logArray);
+	  return logArray;
+	}
+
+	processVotingRulesChanged(data): Array<Object>{
+		console.log(data);
+	  var logArray = [];
+	  for (var i = 0; i < data.result.length; i++) {
+	    var obj = {};
+	    obj["tx"] = this.txUrl + data.result[i].transactionHash
+	    obj["quorum"] = this.web3.toDecimal(data.result[i].data.substring(0, 66));
+	    obj["minutes"] = this.web3.toDecimal('0x' + data.result[i].data.substring(66, 130));
+	    obj["margin"] = this.web3.toDecimal('0x' + data.result[i].data.substring(130, 194));
 	    obj["timestamp"] = this.timeConverter(this.web3.toDecimal(data.result[i].timeStamp));
 	    logArray.push(obj);
 	  }

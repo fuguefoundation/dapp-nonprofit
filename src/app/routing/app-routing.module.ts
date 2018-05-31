@@ -16,27 +16,33 @@ const routes: Routes = [
 	},
 	{
 		path: 'home',
-		component: HomeComponent
+		component: HomeComponent,
+		data: {title: "Home | Fugue Foundation"}
 	},
 	{
 		path: 'dapp',
-		component: DappComponent
+		component: DappComponent,
+		data: {title: "dApp | Fugue Foundation"}
 	},
 	{
 		path: 'beneficiaries',
-		component: BeneficiariesComponent
+		component: BeneficiariesComponent,
+		data: {title: "Beneficiaries | Fugue Foundation"}
 	},
 	{
 		path: 'beneficiary/:id',
-		component: BeneficiaryDetailComponent
+		component: BeneficiaryDetailComponent,
+		data: {title: "Beneficiary | Fugue Foundation"}
 	},
 	{
 		path: 'events',
-		component: EventsComponent
+		component: EventsComponent,
+		data: {title: "Events | Fugue Foundation"}
 	},
 	{
 		path: '**',
-		component: PageNotFoundComponent
+		component: PageNotFoundComponent,
+		data: {title: "404 | Fugue Foundation"}
 	}
 ];
 

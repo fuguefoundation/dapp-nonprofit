@@ -13,6 +13,7 @@ export class DappComponent implements OnDestroy {
   account: any;
   accounts: any;
   network: any;
+  contractSelected: any;
 
   constructor(
     private _ngZone: NgZone,

@@ -17,6 +17,7 @@ export class BoardComponent {
 	accounts: any;
 	canBeNumber = canBeNumber;
 	status: string;
+	functionSelected: string;
 	boardInfo = new Array();
 	functionParams = new Array();
 	functionIndex: any;
