@@ -64,6 +64,7 @@ export class EventsService {
 	  }
 	  console.log(logArray);
 	  return logArray;
+	  //return logArray;
 	}
 
 	processDonationAdded(data): Array<Object>{

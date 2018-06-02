@@ -37,7 +37,13 @@
 	        <button mat-button (click)="clearEvents()"
 	        color="primary">Clear</button>
 		</mat-card-actions>
-    	<pre>{{eventData | json}}</pre>
+		<div *ngFor="let data of eventData;">
+			<ul *ngFor="let key of objectKeys(data);" style="list-style-type: none;">
+				<li><strong>{{key}}</strong> : {{data[key]}}</li>
+			</ul>
+			<hr>
+		</div>
+    	<!-- <pre>{{eventData | json}}</pre> -->
     </div>
   </div>
 </div>

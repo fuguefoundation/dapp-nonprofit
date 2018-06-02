@@ -13,6 +13,7 @@ export class EventsComponent implements OnInit, OnDestroy {
 	events: Event[];
   eventsArray = new Array();
 	eventData = new Array();
+  objectKeys = Object.keys;
   contractSelected: any;
 	web3: any;
   contract: string;
