@@ -54,6 +54,7 @@ export class BoardComponent {
 
   onFunctionSelected = f => {
   	this.functionIndex = f;
+  	this.functionParams = [];
   	let functionSelected = this.boardInfo[1][f].name;
   	let docArray: Array<string> = [];
 

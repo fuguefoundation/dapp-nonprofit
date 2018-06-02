@@ -54,6 +54,7 @@ export class TokenComponent {
 
   onFunctionSelected = f => {
   	this.functionIndex = f;
+  	this.functionParams = [];
   	let functionSelected = this.tokenInfo[1][f].name;
   	let docArray: Array<string> = [];
 

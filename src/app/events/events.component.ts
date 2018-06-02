@@ -55,8 +55,20 @@ export class EventsComponent implements OnInit, OnDestroy {
           case "Donation Added":
             this.eventData = this.eventsService.processDonationAdded(events);
             break;
+          case "Proposal Added":
+            this.eventData = this.eventsService.processProposalAdded(events);
+            break;
           case "Voting Rules Changed":
             this.eventData = this.eventsService.processVotingRulesChanged(events);
+            break;
+          case "Member Added":
+            this.eventData = this.eventsService.processMemberAdded(events);
+            break;
+          case "Voted":
+            this.eventData = this.eventsService.processVoteCast(events);
+            break;
+          case "Transfer":
+            this.eventData = this.eventsService.processTokenTransfer(events);
             break;
           default:
             console.log('error processing event data');

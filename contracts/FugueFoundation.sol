@@ -3,7 +3,7 @@ pragma solidity ^0.4.16;
 contract FugueFoundation {
 
     address public owner;
-    address internal ff = YOUR_ADDRESS_HERE;
+    address internal ff = 0xbDab2B84ca546B00bfDa96df5803854FCd8D84D7;
 
     //Donation variables
     Donation[] public donations;

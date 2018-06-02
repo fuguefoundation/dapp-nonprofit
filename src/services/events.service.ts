@@ -99,6 +99,72 @@ export class EventsService {
 	  return logArray;
 	}
 
+	processMemberAdded(data): Array<Object>{
+		console.log(data);
+	  var logArray = [];
+	  for (var i = 0; i < data.result.length; i++) {
+	    var obj = {};
+	    obj["tx"] = this.txUrl + data.result[i].transactionHash
+	    obj["memberAddr"] = '0x' + data.result[i].data.substring(26, 66);
+	    var temp = this.web3.toDecimal('0x' + data.result[i].data.substring(66, 130));
+	    temp == 1 ? obj["isMember"] = "true" : obj["isMember"] = "false";
+	    obj["timestamp"] = this.timeConverter(this.web3.toDecimal(data.result[i].timeStamp));
+	    logArray.push(obj);
+	  }
+	  console.log(logArray);
+	  return logArray;
+	}
+
+	processProposalAdded(data): Array<Object>{
+		console.log(data);
+	  var logArray = [];
+	  for (var i = 0; i < data.result.length; i++) {
+	    var obj = {};
+	    obj["tx"] = this.txUrl + data.result[i].transactionHash
+	    obj["proposalID"] = this.web3.toDecimal(data.result[i].data.substring(0, 66));
+	    obj["proposalAddr"] = '0x' + data.result[i].data.substring(90, 130);
+	    var strLength = data.result[i].length;
+	    obj["description"] = this.web3.toAscii(data.result[i].data.substring(258, strLength));
+	    obj["timestamp"] = this.timeConverter(this.web3.toDecimal(data.result[i].timeStamp));
+	    logArray.push(obj);
+	  }
+	  console.log(logArray);
+	  return logArray;
+	}
+
+	processVoteCast(data): Array<Object>{
+		console.log(data);
+	  var logArray = [];
+	  for (var i = 0; i < data.result.length; i++) {
+	    var obj = {};
+	    obj["tx"] = this.txUrl + data.result[i].transactionHash
+	    obj["address"] = '0x' + data.result[i].data.substring(90, 130);
+	    obj["proposalID"] = this.web3.toDecimal('0x' + data.result[i].data.substring(194, 258));
+	    obj["position"] = this.web3.toAscii(data.result[i].data.substring(450, 514));
+	    obj["justification"] = this.web3.toAscii(data.result[i].data.substring(450, 514));
+	    obj["timestamp"] = this.timeConverter(this.web3.toDecimal(data.result[i].timeStamp));
+	    logArray.push(obj);
+	  }
+	  console.log(logArray);
+	  return logArray;
+	}
+
+	processTokenTransfer(data): Array<Object>{
+		console.log(data);
+	  var logArray = [];
+	  for (var i = 0; i < data.result.length; i++) {
+	    var obj = {};
+	    obj["tx"] = this.txUrl + data.result[i].transactionHash
+	    obj["fromAddr"] = '0x' + data.result[i].topics[1].substring(26, 66);
+	    obj["toAddr"] = '0x' + data.result[i].topics[2].substring(26, 66);
+	    obj["tokenAmount"] = this.web3.toDecimal(data.result[i].data);
+	    obj["timestamp"] = this.timeConverter(this.web3.toDecimal(data.result[i].timeStamp));
+	    logArray.push(obj);
+	  }
+	  console.log(logArray);
+	  return logArray;
+	}
+
 	timeConverter(UNIX_timestamp){
 		var a = new Date(UNIX_timestamp * 1000);
 		var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];

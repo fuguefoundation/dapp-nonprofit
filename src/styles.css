@@ -19,12 +19,12 @@
   padding:2%;
 }
 .devdoc {
-	margin: 0;
+	margin: 0 0 10px 10px;
 }
 .contractField {
 	width: 400px;
 }
-.ffLink {
+.ffLink, .mat-focused .mat-form-field-label, .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
 	color: #b11926;
 	text-decoration: none;
 }

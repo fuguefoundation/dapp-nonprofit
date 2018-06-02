@@ -57,7 +57,8 @@ The platform is in alpha with contracts deployed to the `Rinkeby` testnet. We in
 
 1. Open the browser's developer tools (F12 on Windows, Ctrl+Opt+i on Mac) and make note of the error in the `console`
 2. The transaction may be failing in Metamask due to a `gas` error. Try increasing the `gasLimit` to 78000 and the `gasPrice` to 20 `gwei`.
-3. Refresh the page and trying again.
+3. If you get a `nonce` error, try disabling Metamask in your browser plugin settings then re-enabling it or switiching to a different network (e.g., Main net, Ropsten, etc) and then back to Rinkeby. Finally, go into the settings and reset the account (beta version).
+4. Refresh the page and try again.
 
 ## Contributing to the project
 

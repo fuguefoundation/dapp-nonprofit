@@ -52,6 +52,7 @@ export class FFComponent {
 
   onFunctionSelected = f => {
   	this.functionIndex = f;
+  	this.functionParams = [];
   	let functionSelected = this.ffInfo[1][f].name;
   	let docArray: Array<string> = [];
 
@@ -92,6 +93,7 @@ export class FFComponent {
 
 		case "donate":
 		    this.setStatus('Initiating transaction... (please wait)');
+		    this.functionParams[2] ? undefined : this.functionParams[2] = "no comment";
 		    this.ffService.donate(this.functionParams[0], this.functionParams[1], this.functionParams[2])
 		      .subscribe(res =>{
 		      	console.log(res);
