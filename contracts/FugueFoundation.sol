@@ -18,7 +18,6 @@ contract FugueFoundation {
     // Donation events
     event BeneficiaryAdded(address beneficiary, string name);
     event DonationAdded(uint id, address donor, address beneficiary, uint amount, uint timestamp, string comment);
-    event DonationSent(address beneficiary, uint amount);
     event DonorAdded(address donor, uint timestamp, uint amount);
     event Feedback(string error);
 

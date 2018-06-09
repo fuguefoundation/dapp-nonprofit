@@ -41,7 +41,7 @@ export class Web3Service {
       case "3":
         this.messageService.add("You are using Ropsten. Please connect to Rinkeby.");
       case "4":
-        this.messageService.add("Rinkeby, excellent!");
+        this.messageService.add("Rinkeby detected, excellent!");
         break;
       default:
         this.messageService.add("Unknown network. Please connect to Rinkeby in Metamask.")
@@ -59,7 +59,7 @@ export class Web3Service {
 
   	    if (accs.length === 0) {
   	      //observer.error('Couldn\'t get any accounts! Make sure your Ethereum client is configured correctly.')
-          this.messageService.add('Couldn\'t get any accounts! Make sure your Ethereum client is configured correctly.')
+          this.messageService.add('Couldn\'t retrieve accounts! Make sure Metamask is unlocked or that your Ethereum client is configured correctly.')
   	    }
   	    observer.next(accs)
   	    observer.complete()

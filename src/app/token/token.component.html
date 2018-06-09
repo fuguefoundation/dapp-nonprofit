@@ -30,32 +30,65 @@
 			</mat-select>
 		</mat-form-field>
 
-		<div *ngIf="functionIndex" id="functionDiv">
-			{{docs[1].notice}}
-			<span *ngIf="docs[1].onlyOwner" style="color:red;">Only for contract owner</span>
-			<div *ngFor="let input of tokenInfo[1][functionIndex].inputs; index as i;">
-				<mat-input-container class="contractField">
-					<input matInput [(ngModel)]="functionParams[i]" required
-					placeholder={{input.name}} name="{{input.name}}">
-				</mat-input-container>
-				<p *ngIf="input.name" class="devdoc">
-					type: {{input.type}} | {{docs[0].params[input.name]}}
-				</p>
+		<form #contractForm="ngForm">
+			<div *ngIf="functionIndex" id="functionDiv">
+				{{docs[1].notice}}
+				<span *ngIf="docs[1].onlyOwner" class="devWarning">Only for contract owner</span>
+				<span *ngIf="docs[1].onlyMembers" class="devWarning">Only for board members</span>
+				<div *ngFor="let input of tokenInfo[1][functionIndex].inputs; index as i;">
+					<span *ngIf="input.type == 'address'">
+						<mat-input-container class="contractField">
+							<input matInput [(ngModel)]="functionParams[i]"
+							placeholder="{{input.name}}"
+							name="{{tokenInfo[1][functionIndex].name}}{{i}}"
+							minlength="42" maxlength="42"
+							required>
+						</mat-input-container>
+						<p *ngIf="input.name" class="devdoc">
+							type: {{input.type}} | {{docs[0].params[input.name]}}
+						</p>
+					</span>
+					<span *ngIf="input.type == 'bool'">
+						<mat-select placeholder="{{input.name}}" [(ngModel)]="functionParams[i]"
+						class="contractField" name="{{tokenInfo[1][functionIndex].name}}{{i}}" required>
+						  <mat-option value="true">True</mat-option>
+						  <mat-option value="false">False</mat-option>
+						</mat-select>
+						<p *ngIf="input.name" class="devdoc">
+							type: {{input.type}} | {{docs[0].params[input.name]}}
+						</p>
+					</span>
+					<span *ngIf="input.type == 'uint256'">
+						<mat-input-container class="contractField">
+							<input matInput [(ngModel)]="functionParams[i]"
+							placeholder="{{input.name}}"
+							type="number"
+							name="{{tokenInfo[1][functionIndex].name}}{{i}}"
+							required>
+						</mat-input-container>
+						<p *ngIf="input.name" class="devdoc">
+							type: {{input.type}} | {{docs[0].params[input.name]}}
+						</p>
+					</span>
+					<span *ngIf="input.type !== 'address' && input.type !== 'bool'
+					&& input.type !== 'uint256'">
+						<mat-input-container class="contractField">
+							<input matInput [(ngModel)]="functionParams[i]"
+							placeholder="{{input.name}}"
+							name="{{tokenInfo[1][functionIndex].name}}{{i}}"
+							required>
+						</mat-input-container>
+						<p *ngIf="input.name" class="devdoc">
+							type: {{input.type}} | {{docs[0].params[input.name]}}
+						</p>
+					</span>
+				</div>
+				<mat-card-actions>
+			        <button mat-button (click)="executeContract(functionSelected)"
+			        color="primary" [disabled]="!contractForm.form.valid">Execute</button>
+				</mat-card-actions>
 			</div>
-			<div *ngIf="tokenInfo[1][functionIndex].name == 'buy'">
-				<mat-input-container class="contractField">
-					<input matInput [(ngModel)]="functionParams[0]" required
-					placeholder="amount" name="amount">
-				</mat-input-container>
-				<p class="devdoc">
-					type: uint256 | the amount of ether (in wei) you want to spend to buy tokens
-				</p>
-			</div>
-			<mat-card-actions>
-		        <button mat-button (click)="executeContract(functionSelected)"
-		        color="primary">Execute</button>
-			</mat-card-actions>
-		</div>
+		</form>
     </div>
   </div>
 </div>

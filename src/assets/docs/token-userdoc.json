@@ -10,10 +10,10 @@
             "notice": "Remove `_value` tokens from the system irreversibly"
         },
         "burnFrom": {
-            "notice": "Destroy tokens from other account     * Remove `_value` tokens from the system irreversibly on behalf of `_from`."
+            "notice": "Destroy tokens from other account. Remove `_value` tokens from the system irreversibly on behalf of `_from`."
         },
         "buy": {
-            "notice": "DISABLED. Buy tokens from contract by sending ether"
+            "notice": "--DISABLED-- Request XFF tokens on Github repo"
         },
         "freezeAccount": {
             "notice": "Prevent | Allow `target` from sending & receiving tokens",

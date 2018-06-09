@@ -23,7 +23,7 @@ export class FFService {
 		this.accounts = accounts;
 	  	let ff;
 	  	let ffArray = new Array();
-	  	let itemsToAdd = [1, 6, 8, 16, 17, 18, 19, 20, 21, 22];
+	  	let itemsToAdd = [1, 6, 8, 15, 16, 17, 18, 19, 20, 21];
 
 	  	return Observable.create(observer => {
 	  		this.FF
