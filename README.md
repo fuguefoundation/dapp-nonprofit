@@ -1,6 +1,6 @@
 # Charitable smart contracting platform
 <p align="center">
-  <img src="https://github.com/fuguefoundation/nonprofit/blob/master/src/assets/images/logo_150.png">
+  <img src="https://github.com/fuguefoundation/dapp-nonprofit/blob/master/src/assets/images/logo_150.png">
 </p>
 
 ## Fugue Foundation nonprofit goals
